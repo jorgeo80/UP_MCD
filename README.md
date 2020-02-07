@@ -2,5 +2,5 @@
 
 ## Materias
 
-* [Machine Leaning I](/UP_MCD/MachineLearning)
+* [Machine Leaning I](/MachineLearning)
 
