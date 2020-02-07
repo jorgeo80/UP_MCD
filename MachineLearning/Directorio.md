@@ -2,4 +2,4 @@
 
 ## Proyectos, Tareas, Ejercicios...
 
-* [Regresión Lineal - Jupyter Notebook](/RegresionLineal.ipynb)
+* [Regresión Lineal - Jupyter Notebook](/MachineLearning/RegresionLineal.ipynb)
