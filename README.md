@@ -6,4 +6,4 @@
 
 ## Ejericicios
 
-* [Ejercicios Python](/PythonExcercises/Directorio.md)
+* [Ejercicios Python](/PythonExercises/Directorio.md)
