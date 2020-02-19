@@ -12,7 +12,7 @@
 ## Machine Learning
 
 * [Aprendizaje Supervisado](/PythonExercises/ML/001_Supervised_Learning_scikit-learn.py)
-
+* [Aprendizaje No Supervisado](/PythonExercises/ML/002_Unsupervised_Learning_scikit-learn.py)
 
 
 
