@@ -12,7 +12,7 @@
 *
 # 
 ## Proyectos
-*
+* [Proyecto CHURN - Jupyter Notebook](/MachineLearning/Proyecto/CHURNAnalysis.ipynb)
 # 
 ## Ligas de Interes
 *
