@@ -12,7 +12,7 @@
 * [Regresión Logistica - Jupyter Notebook](/MachineLearning/logistica.ipynb)
 # 
 ## Tareas
-* [Descenso de Gradiente Estocástico](/MachineLearning/TareII-SGD.ipynb)
+* [Descenso de Gradiente Estocástico](/MachineLearning/TareaII-SGD.ipynb)
 # 
 ## Proyectos
 * [Proyecto CHURN - Jupyter Notebook](/MachineLearning/Proyecto/CHURNAnalysis.ipynb)
