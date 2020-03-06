@@ -323,11 +323,10 @@ print('RMSE (CatBoost): {:.3f}'.format(rmse_cat))
 # ============================== #
 
 # Build and fit a XGBoost regressor
-reg_xgb = xgb.XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=500)
+reg_xgb = xgb.XGBRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=500)
 reg_xgb.fit(X_train, y_train)
-
 # Build and fit a LightGBM regressor
-reg_lgb = lgb.LGBMClassifier(n_estimators=100, learning_rate=0.1, max_depth=3, seed=500)
+reg_lgb = lgb.LGBMRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, seed=500)
 reg_lgb.fit(X_train, y_train)
 # Calculate the predictions and evaluate both regressors
 pred_xgb = reg_xgb.predict(X_test)
@@ -335,3 +334,124 @@ rmse_xgb = np.sqrt(mean_squared_error(y_test, pred_xgb))
 pred_lgb = reg_lgb.predict(X_test)
 rmse_lgb = np.sqrt(mean_squared_error(y_test, pred_lgb))
 print('Extreme: {:.3f}, Light: {:.3f}'.format(rmse_xgb, rmse_lgb))
+
+# ============================== #
+# =====    Ejercicio 22    ===== #
+# ============================== #
+
+# Instantiate a Naive Bayes classifier
+clf_nb = GaussianNB()
+# Fit the model to the training set
+clf_nb.fit(X_train, y_train)
+# Calculate the predictions on the test set
+pred = clf_nb.predict(X_test)
+# Evaluate the performance using the accuracy score
+print("Accuracy: {:0.4f}".format(accuracy_score(y_test, pred)))
+
+# ============================== #
+# =====    Ejercicio 23    ===== #
+# ============================== #
+
+# Instantiate a 5-nearest neighbors classifier with 'ball_tree' algorithm
+clf_knn = KNeighborsClassifier(n_neighbors=5, algorithm='ball_tree')
+# Fit the model to the training set
+clf_knn.fit(X_train,y_train)
+# Calculate the predictions on the test set
+pred = clf_knn.predict(X_test)
+# Evaluate the performance using the accuracy score
+print("Accuracy: {:0.4f}".format(accuracy_score(y_test, pred)))
+
+# ============================== #
+# =====    Ejercicio 24    ===== #
+# ============================== #
+
+# Build and fit a Decision Tree classifier
+clf_dt = DecisionTreeClassifier(min_samples_leaf=3, min_samples_split=9, random_state=500)
+clf_dt.fit(X_train, y_train)
+# Build and fit a 5-nearest neighbors classifier using the 'Ball-Tree' algorithm
+clf_knn = KNeighborsClassifier(n_neighbors=5, algorithm='ball_tree')
+clf_knn.fit(X_train, y_train)
+# Evaluate the performance using the accuracy score
+print('Decision Tree: {:0.4f}'.format(accuracy_score(y_test, clf_dt.predict(X_test))))
+print('5-Nearest Neighbors: {:0.4f}'.format(accuracy_score(y_test, clf_knn.predict(X_test))))
+
+# ============================== #
+# =====    Ejercicio 25    ===== #
+# ============================== #
+
+# Create a Pandas DataFrame with the predictions
+pred_df = pd.DataFrame({
+	'pred_dt': pred_dt,
+    'pred_knn': pred_knn
+}, index=X_train.index)
+# Concatenate X_train with the predictions DataFrame
+X_train_2nd = pd.concat([X_train, pred_df], axis = 1)
+# Build the second-layer meta estimator
+clf_stack = DecisionTreeClassifier(random_state=500)
+clf_stack.fit(X_train_2nd, y_train)
+
+# ============================== #
+# =====    Ejercicio 26    ===== #
+# ============================== #
+
+# Create a Pandas DataFrame with the predictions
+pred_df = pd.DataFrame({
+	'pred_dt': pred_dt,
+    'pred_knn': pred_knn
+}, index=X_test.index)
+# Concatenate X_test with the predictions DataFrame
+X_test_2nd = pd.concat([X_test, pred_df], axis=1)
+# Obtain the final predictions from the second-layer estimator
+pred_stack = clf_stack.predict(X_test_2nd)
+# Evaluate the new performance on the test set
+print('Accuracy: {:0.4f}'.format(accuracy_score(y_test, pred_stack)))
+
+
+# ============================== #
+# =====    Ejercicio 27    ===== #
+# ============================== #
+
+# Instantiate the first-layer classifiers
+clf_dt = DecisionTreeClassifier(min_samples_leaf=3, min_samples_split=9, random_state=500)
+clf_knn = KNeighborsClassifier(n_neighbors=5, algorithm='ball_tree')
+# Instantiate the second-layer meta classifier
+clf_meta = DecisionTreeClassifier(random_state=500)
+# Build the Stacking classifier
+clf_stack = StackingClassifier(classifiers=[clf_dt, clf_knn], meta_classifier=clf_meta, use_features_in_secondary=True)
+clf_stack.fit(X_train, y_train)
+# Evaluate the performance of the Stacking classifier
+pred_stack = clf_stack.predict(X_test)
+print("Accuracy: {:0.4f}".format(accuracy_score(y_test, pred_stack)))
+
+# ============================== #
+# =====    Ejercicio 28    ===== #
+# ============================== #
+
+# Instantiate the 1st-layer regressors
+reg_dt = DecisionTreeRegressor(min_samples_leaf=11, min_samples_split=33, random_state=500)
+reg_lr = LinearRegression(normalize=True)
+reg_ridge = Ridge(random_state=500)
+# Instantiate the 2nd-layer regressor
+reg_meta = LinearRegression()
+# Build the Stacking regressor
+reg_stack = StackingRegressor(regressors=[reg_dt, reg_lr, reg_ridge], meta_regressor=reg_meta)
+reg_stack.fit(X_train, y_train)
+# Evaluate the performance on the test set using the MAE metric
+pred = reg_stack.predict(X_test)
+print('MAE: {:.3f}'.format(mean_absolute_error(y_test, pred)))
+
+# ============================== #
+# =====    Ejercicio 28    ===== #
+# ============================== #
+
+# Create the first-layer models
+clf_knn = KNeighborsClassifier(n_neighbors=5, algorithm='ball_tree')
+clf_dt = DecisionTreeClassifier(min_samples_leaf=5, min_samples_split=15, random_state=500)
+clf_nb = GaussianNB()
+# Create the second-layer model (meta-model)
+clf_lr = LogisticRegression()
+# Create and fit the stacked model
+clf_stack = StackingClassifier(classifiers=[clf_knn, clf_dt, clf_nb], meta_classifier=clf_lr)
+clf_stack.fit(X_train, y_train)
+# Evaluate the stacked model’s performance
+print("Accuracy: {:0.4f}".format(accuracy_score(y_test, clf_stack.predict(X_test))))
