@@ -1,7 +1,7 @@
 ###### [home](/README.md)
 # 
-# ___"Machine Learning I"___
- 
+# :rocket: ___"Machine Learning I"___ :train2:
+
 ## Ejercicios de Clase
 
 * [S3 - Regresión Lineal - Jupyter Notebook](/MachineLearning/S3-RegresionLineal.ipynb)
