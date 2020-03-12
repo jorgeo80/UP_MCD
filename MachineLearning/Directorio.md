@@ -1,6 +1,6 @@
 ###### [home](/README.md)
 # 
-# Curso Machine Learning I UP-2019
+# ___"Machine Learning I"___
  
 ## Ejercicios de Clase
 
@@ -13,6 +13,9 @@
 * [S5 - Regularización - Jupyter Notebook](/MachineLearning/S5.2-Regularizacion.ipynb)
 * [S5 - Regresión Logistica - Jupyter Notebook](/MachineLearning/S5.3-RegLogistica.ipynb)
 * [S6 - Maquinas de Soporte Vectorial - Jupyter Notebook](/MachineLearning/S6-SVM.ipynb)
+* [S7 - K-Medias - Jupyter Notebook](/MachineLearning/S7.1-Kmedias.ipynb)
+* [S7 - Fuzzy Cluster - Jupyter Notebook](/MachineLearning/S7.2-fcm.ipynb)
+* [S7 - Mezclas Guasianas - Jupyter Notebook](/MachineLearning/S7.3-gmm.ipynb)
 # 
 ## Tareas
 * [Descenso de Gradiente Estocástico](/MachineLearning/TareaII-SGD.ipynb)
@@ -21,4 +24,9 @@
 * [Proyecto CHURN - Jupyter Notebook](/MachineLearning/Proyecto/CHURNAnalysis.ipynb)
 # 
 ## Ligas de Interes
-*
+* [Kaggle](https://www.kaggle.com)
+* [Analytics Vidhya](https://www.datahack.analyticsvidhya.com)
+* [Crowd Analytix](https://www.crowdanalytix.com)
+* [Deeplearning Stanford](http://deeplearning.stanford.edu/tutorial/)
+* [MIT Machine Learning](http://www.mit.edu/~rakhlin/6.883/)
+
