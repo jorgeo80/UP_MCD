@@ -1,6 +1,6 @@
 ###### [home](/README.md)
 # 
-# :rocket: ___"Machine Learning I"___ :train2:
+# :train2: ___"Machine Learning I"___ :rocket:
 
 ## Ejercicios de Clase
 
