@@ -1,4 +1,4 @@
-# Master in Data Science Repository
+# :octocat: Master in Data Science Repository :dog:
 
 ## Materias
 
