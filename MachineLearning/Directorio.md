@@ -16,6 +16,8 @@
 * [S7 - K-Medias - Jupyter Notebook](/MachineLearning/S7.1-Kmedias.ipynb)
 * [S7 - Fuzzy Cluster - Jupyter Notebook](/MachineLearning/S7.2-fcm.ipynb)
 * [S7 - Mezclas Guasianas - Jupyter Notebook](/MachineLearning/S7.3-gmm.ipynb)
+* [S8 - Análisis de Componentes Principales - Jupyter Notebook](/MachineLearning/S8.1-PCA.ipynb)
+* [S8 - Eliminación Recursiva Atributos - Jupyter Notebook](/MachineLearning/S8.2-RFE.ipynb)
 # 
 ## Tareas
 * [Descenso de Gradiente Estocástico](/MachineLearning/TareaII-SGD.ipynb)
