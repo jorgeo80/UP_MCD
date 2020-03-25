@@ -2,6 +2,7 @@
 
 ## Materias
 
+* [Estadística](/Estadistica/Directorio.md)
 * [Machine Leaning I](/MachineLearning/Directorio.md)
 
 ## Ejericicios
