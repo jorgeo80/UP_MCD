@@ -18,6 +18,8 @@
 * [S7 - Mezclas Guasianas - Jupyter Notebook](/MachineLearning/S7.3-gmm.ipynb)
 * [S8 - Análisis de Componentes Principales - Jupyter Notebook](/MachineLearning/S8.1-PCA.ipynb)
 * [S8 - Eliminación Recursiva Atributos - Jupyter Notebook](/MachineLearning/S8.2-RFE.ipynb)
+* [S9 - Validación Cruzada - Jupyter Notebook](/MachineLearning/S9.1-ValidacionCruzada.ipynb)
+* [S9 - Optimización Bayesiana - Jupyter Notebook](/MachineLearning/S9.2-OptimizacionModelos.ipynb)
 # 
 ## Tareas
 * [Descenso de Gradiente Estocástico](/MachineLearning/TareaII-SGD.ipynb)
