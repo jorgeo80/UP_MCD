@@ -6,6 +6,7 @@
 * [Machine Leaning I](/Materias/MachineLearning_I/Directorio.md)
 * [Machine Leaning II](/Materias/MachineLearning_II/Directorio.md)
 * [Visualización de Datos](/Materias/VisualizacionDatos/Directorio.md)
+* [Visualización de Datos](/Materias/VisualizacionDatos/Directorio.md)
 
 ## Ejericicios
 
