@@ -2,10 +2,9 @@
 
 ## Materias
 
-* [Estadística](/Materias/Estadistica/Directorio.md)
 * [Machine Leaning I](/Materias/MachineLearning_I/README.md)
-* [Machine Leaning II](/Materias/MachineLearning_II/Directorio.md)
-* [Visualización de Datos](/Materias/VisualizacionDatos/Directorio.md)
+* [Machine Leaning II](/Materias/MachineLearning_II/README.md)
+* [Visualización de Datos]()
 
 ## Ejericicios
 
