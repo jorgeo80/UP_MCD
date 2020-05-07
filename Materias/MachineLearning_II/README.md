@@ -5,6 +5,7 @@
 ## Ejercicios de Clase
 
 * [S2 - Reinforcement Learning - Jupyter Notebook](./SS2-ReinforcementLearning-Taxiv2.ipynb)
+* [S4 - Redes Neuronales - Jupyter Notebook](./S4-RedesNeuronales.ipynb)
 
 # 
 ## Tareas
