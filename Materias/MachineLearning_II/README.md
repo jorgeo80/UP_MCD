@@ -18,4 +18,6 @@
 * [Gym Open AI](https://gym.openai.com/)
 * [Playground Tensorflow](https://playground.tensorflow.org/)
 * [Tensorflow](https://www.tensorflow.org/)
+* [Cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)
+* [Benchmark AI](https://benchmarks.ai/)
 * [Deeplearning Stanford](http://deeplearning.stanford.edu/tutorial/)
