@@ -22,8 +22,22 @@
 * [S007 - Métricas de Evaluación](./Clases/S07_012_Métricas_Evaluación.ipynb)
 * [S007 - Clasificación de Textos](./Clases/S07_013_Clasificación_Textos.ipynb)
 * [S008 - Análisis de Sentimientos](./Clases/S08_014_AnalisisSentimientos.ipynb)
+* [S009 - Etiquetado Gramatical](./Clases/S09_015_EtiquetadoGramatical.ipynb)
 
 ## Pryecto
 
 * [Análisis de Descripciones de Partidas](./Proyecto/ProyectoFinal_NLP_v3.ipynb)
+
+## Ligas de Interes
+
+* [Regex]( https://regexr.com/)
+* [iHateRegex]( https://ihateregex.io/)
+*  [NLTK](https://www.nltk.org/)
+* [spaCy](https://spacy.io/)
+* [Hunspell](http://hunspell.github.io/)
+* [Hugging Face](https://github.com/huggingface)
+* [Etiquetas EAGLES](https://www.cs.upc.edu/~nlp/tools/parole-sp.html)
+* [UPOS](https://universaldependencies.org/u/pos/)
+* [Universal Dependency Relations](https://universaldependencies.org/u/dep/)
+* [NLP – Analyzing Text with the Natural Language Toolkit](https://github.com/Sturzgefahr/Natural-Language-Processing-with-Python-Analyzing-Text-with-the-Natural-Language-Toolkit) 
 
