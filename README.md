@@ -4,8 +4,8 @@
 
 * [Machine Leaning I](/Materias/MachineLearning_I/README.md)
 * [Machine Leaning II](/Materias/MachineLearning_II/README.md)
-* [Visualización de Datos](/VisualizacionDatos)
-* [Procesamiento de Lenguaje Natural](/VisualizacionDatos)
+* [Visualización de Datos](/Materias/VisualizacionDatos/)
+* [Procesamiento de Lenguaje Natural](/Materias/ProcesamientoLenguaje/README.md)
 
 ## Ejericicios
 
