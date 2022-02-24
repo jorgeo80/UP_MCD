@@ -1,0 +1,198 @@
+---
+title: "Examen Redes Sociales"
+author: "Jorge Castro - 0234588"
+output:
+  pdf_document:
+    latex_engine: xelatex    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(rtweet)
+```
+
+
+### Obtenemos la tabla con las tendencias
+
+```{r}
+
+country <- 'Mexico'
+df_trends <- get_trends(country)
+n_trends <- 10
+
+glimpse(df_trends)
+
+```
+### Imprimimos el top n de las tendencias
+
+```{r}
+df_trends %>%
+  select(-c(2, 3, 4))  %>%
+  head(n_trends) %>%
+  knitr::kable("pipe")
+```
+
+### Descargamos 15K tweets con la nota de "#HoustonGate"
+
+```{r}
+
+news_search <- '#HoustonGate'
+n_tweets <- 15000
+language <- 'es'
+
+df_tweets <- 
+  search_tweets(q = news_search, 
+                n = n_tweets,
+                lang = language,
+                #since = '2022-01-30', 
+                #until = '2022-01-31', 
+                type = 'mixed')
+
+glimpse(df_tweets)
+
+```
+### 1.- Imprimimos una lista con los n tweets con mas retweets
+
+```{r}
+top_retweets <- 10
+
+df_top_retweets <-
+  df_tweets %>%
+    filter(is_retweet # Si fue retweeteado o no
+           ) %>% 
+    select(retweet_text, # Texto del retweet
+           retweet_screen_name, # Quien lo posteo
+           retweet_count # Cuantos retweets tiene
+           ) %>%
+    distinct()  %>%
+    arrange(-retweet_count) %>%
+    head(top_retweets) 
+
+df_top_retweets %>%
+  knitr::kable(caption = paste0('Tabla - Top ', top_retweets, ' de retweets'), 
+               format = "html")
+
+```
+
+### Imprimimos la grafica con los n tweets con mas retweets
+
+```{r}
+
+df_top_retweets %>%
+  group_by(retweet_screen_name) %>%
+  summarise(retweet_count = sum(retweet_count)) %>%
+  ggplot(aes(x = reorder(retweet_screen_name, retweet_count), 
+             y = retweet_count,
+             fill = retweet_count)) +
+    geom_bar(stat = 'identity') +
+    scale_fill_gradient(low = "deepskyblue1", high = "darkblue") +
+    geom_text(aes(label = retweet_count), hjust = 0) +
+    coord_flip() +
+    labs(y = 'Usuario',
+         x = 'Retweets') +
+    theme_bw() + 
+    theme(legend.position = 'none')
+
+```
+### 2. Imprimimos la grafica con los n usuarios mas activos
+
+```{r}
+
+n_rank <- 10
+
+rank_top_users <-
+  df_tweets %>%
+    select(screen_name, followers_count, friends_count, 
+           listed_count,favourites_count, statuses_count,
+           retweet_count) %>% 
+    distinct() %>%
+    mutate(followers_percentile = ecdf(followers_count)(followers_count),
+           friends_percentile = ecdf(friends_count)(friends_count),
+           listed_percentile = ecdf(listed_count)(listed_count),
+           favourites_percentile = ecdf(favourites_count)(favourites_count),
+           statuses_percentile = ecdf(statuses_count)(statuses_count),
+           retweet_percentile = ecdf(retweet_count)(retweet_count),
+           top_score = followers_percentile + friends_percentile +
+                       listed_percentile + favourites_percentile + 
+                       statuses_percentile + retweet_percentile) %>%
+    group_by(screen_name) %>%
+    summarise(top_score = mean(top_score)) %>%
+    ungroup() %>% 
+    mutate(ranking = rank(-top_score)) %>%
+    arrange(ranking) %>%
+    head(n_rank)
+  
+rank_top_users %>%
+  select(x = screen_name, y = top_score) %>%
+  ggplot(aes(x = reorder(x, y), 
+             y = y,
+             fill = y)) +
+    geom_bar(stat = 'identity') +
+    scale_fill_gradient(low = "green", high = "darkgreen") +
+    geom_text(aes(label = round(y, 2)), hjust = 0) +
+    coord_flip() +
+    labs(x = 'Usuario',
+         y = 'Top Score') +
+    theme_bw() + 
+    theme(legend.position = 'none')
+
+```
+
+### 3. Imprimimos la grafica con los n usuarios con mas follwers
+
+```{r}
+
+n_followers <- 10
+
+top_followers <-
+  df_tweets %>%
+    select(screen_name, followers_count) %>% 
+    distinct() %>%
+    group_by(screen_name) %>%
+    summarise(followers_count = mean(followers_count)) %>%
+    ungroup() %>% 
+    arrange(-followers_count) %>%
+    head(n_followers)
+  
+top_followers %>%
+  select(x = screen_name, y = followers_count) %>%
+  ggplot(aes(x = reorder(x, y), 
+             y = y,
+             fill = y)) +
+    geom_bar(stat = 'identity') +
+    scale_fill_gradient(low = "darkorchid1", high = "darkorchid4") +
+    geom_text(aes(label = y), hjust = 0) +
+    coord_flip() +
+    labs(x = 'Usuario',
+         y = 'Followers') +
+    theme_bw() + 
+    theme(legend.position = 'none')
+
+
+```
+
+### 4. Imprimimos la serie de tiempo de tweets vs retweets
+
+```{r}
+
+
+df_time_series <-
+  df_tweets %>% 
+    arrange(created_at) %>% 
+    mutate(created_at = str_sub(as.character(created_at),6,13),
+           type = ifelse(!is_retweet, 'Tweet', 'Retweet')) %>% 
+    count(created_at, type) %>%
+    spread(type, n, fill = 0) %>%
+    gather(type, n, -created_at) %>%
+    mutate(type = as.factor(type))
+
+ggplot(df_time_series, aes(x = created_at, y = n, group = type)) +
+  geom_line(aes(color = type)) +
+  labs(x = 'Fecha',
+       y = 'Conteo') +
+  theme_bw() + 
+  theme(legend.title = element_blank())
+
+
+```
