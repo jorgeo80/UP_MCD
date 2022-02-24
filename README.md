@@ -6,6 +6,7 @@
 * [Machine Leaning II](/Materias/MachineLearning_II/README.md)
 * [Visualización de Datos](/Materias/VisualizacionDatos/)
 * [Procesamiento de Lenguaje Natural](/Materias/ProcesamientoLenguaje/README.md)
+* [Redes Sociales](/Materias/RedesSociales/)
 
 ## Ejericicios
 
