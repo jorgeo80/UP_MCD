@@ -15,7 +15,8 @@ df_tuits <- search_tweets(q="#PeorQueMegacable",
 wordcloud(df_tuits$text)
 
 df_tokens <- tibble(message = 1:nrow(df_tuits), 
-                    text = df_tuits$text) %>%
+                    text = str_replace(df_tuits$text, 
+                                       'https://.{1,}\\s{0,1}', '')) %>%
                tidytext::unnest_tokens(word, text) %>%
                count(word, sort = TRUE)
 
@@ -40,13 +41,24 @@ stopwords <-
     arrange(-n) %>%
     head(n = 0.01 * nrow(.))
 
+mylist <- c(tolower(unique(unlist(df_tuits$mentions_screen_name))),
+            'peorquemegacable')
+
 df_wc <-
   tibble(message = 1:nrow(df_tuits), 
-         text = df_tuits$text) %>%
+         text = str_replace(df_tuits$text, 
+                            'https://.{1,}\\s{0,1}', '')) %>%
     tidytext::unnest_tokens(word, text) %>%
     anti_join(stopwords, by = 'word') %>%
-    count(word, sort = TRUE) 
-    #filter(!word %in% c('peorquemegacable'))
+    count(word, sort = TRUE)  %>%
+    filter(!word %in% mylist)
 
-wordcloud(words = df_wc$word, freq = df_wc$n)
+wordcloud(words = df_wc$word, 
+          freq = df_wc$n,
+          random.order = FALSE,
+          max.words = 500,
+          colors = brewer.pal(8,'Dark2')
+          )
+
+
 
